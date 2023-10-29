@@ -1,0 +1,9 @@
+{
+	"name": "raamadf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "678faf79-8d30-4b6f-86b4-e0f17e9a1e42",
+		"tenantId": "07f69157-7471-4824-918d-ddac829ae57b"
+	}
+}
