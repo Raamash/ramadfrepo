@@ -60,7 +60,7 @@
 			"pp_file_name": {
 				"type": "string"
 			},
-			"pp_file": {
+			"pp_directory_out": {
 				"type": "string"
 			}
 		},
