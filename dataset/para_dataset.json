@@ -11,6 +11,9 @@
 			},
 			"ds_directory": {
 				"type": "string"
+			},
+			"ds_file_name": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
