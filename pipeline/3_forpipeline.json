@@ -13,11 +13,41 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "para_dataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"ds_file_system": {
+								"value": "@pipeline().parameters.pp_file_system",
+								"type": "Expression"
+							},
+							"ds_directory": {
+								"value": "@pipeline().parameters.pp_directory_in",
+								"type": "Expression"
+							}
+						}
+					},
+					"fieldList": [],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
 			}
 		],
 		"parameters": {
-			"pp_file": {
+			"pp_file_system": {
+				"type": "string"
+			},
+			"pp_directory_in": {
+				"type": "string"
+			},
+			"pp_file_name": {
 				"type": "string"
 			}
 		},
