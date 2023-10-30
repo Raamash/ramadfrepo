@@ -21,12 +21,20 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().ds_file_name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().ds_directory",
+					"type": "Expression"
+				},
 				"fileSystem": {
 					"value": "@dataset().ds_file_system",
 					"type": "Expression"
 				}
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "\t",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
