@@ -33,7 +33,11 @@
 							}
 						}
 					},
-					"fieldList": [],
+					"fieldList": [
+						"itemName",
+						"itemType",
+						"childItems"
+					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
 						"enablePartitionDiscovery": false
