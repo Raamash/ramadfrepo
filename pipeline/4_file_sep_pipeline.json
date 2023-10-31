@@ -13,6 +13,7 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
+				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "data_test_para",
@@ -24,6 +25,10 @@
 							},
 							"ds_directory": {
 								"value": "@pipeline().parameters.pp_directory_in",
+								"type": "Expression"
+							},
+							"ds_file": {
+								"value": "@pipeline().parameters.pp_file",
 								"type": "Expression"
 							}
 						}
@@ -60,6 +65,7 @@
 						"value": "@activity('Get MD1').output.childItems",
 						"type": "Expression"
 					},
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "Ifcond",
@@ -68,9 +74,91 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@item()",
+									"value": "@endswith(item().name,'csv')",
 									"type": "Expression"
 								},
+								"ifFalseActivities": [
+									{
+										"name": "Copy data2",
+										"type": "Copy",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "DelimitedTextSource",
+												"storeSettings": {
+													"type": "AzureBlobFSReadSettings",
+													"recursive": true,
+													"enablePartitionDiscovery": false
+												},
+												"formatSettings": {
+													"type": "DelimitedTextReadSettings"
+												}
+											},
+											"sink": {
+												"type": "DelimitedTextSink",
+												"storeSettings": {
+													"type": "AzureBlobFSWriteSettings"
+												},
+												"formatSettings": {
+													"type": "DelimitedTextWriteSettings",
+													"quoteAllText": true,
+													"fileExtension": ".txt"
+												}
+											},
+											"enableStaging": false,
+											"translator": {
+												"type": "TabularTranslator",
+												"typeConversion": true,
+												"typeConversionSettings": {
+													"allowDataTruncation": true,
+													"treatBooleanAsNumber": false
+												}
+											}
+										},
+										"inputs": [
+											{
+												"referenceName": "data_test_para",
+												"type": "DatasetReference",
+												"parameters": {
+													"ds_system": {
+														"value": "@pipeline().parameters.pp_system",
+														"type": "Expression"
+													},
+													"ds_directory": {
+														"value": "@pipeline().parameters.pp_directory_in",
+														"type": "Expression"
+													},
+													"ds_file": "@item().name"
+												}
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "data_test_para",
+												"type": "DatasetReference",
+												"parameters": {
+													"ds_system": {
+														"value": "@pipeline().parameters.pp_system",
+														"type": "Expression"
+													},
+													"ds_directory": {
+														"value": "@pipeline().parameters.pp_directory_out_text",
+														"type": "Expression"
+													},
+													"ds_file": "@item().name"
+												}
+											}
+										]
+									}
+								],
 								"ifTrueActivities": [
 									{
 										"name": "Copy data1",
