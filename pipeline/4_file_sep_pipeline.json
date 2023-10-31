@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Metadata1",
+				"name": "Get MD1",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
@@ -48,7 +48,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata1",
+						"activity": "Get MD1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -57,38 +57,15 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Metadata1').output.childItems",
+						"value": "@activity('Get MD1').output.childItems",
 						"type": "Expression"
 					},
 					"activities": [
 						{
-							"name": "If Condition1",
+							"name": "Ifcond",
 							"type": "IfCondition",
 							"dependsOn": [],
 							"userProperties": []
-						},
-						{
-							"name": "Copy data1",
-							"type": "Copy",
-							"dependsOn": [
-								{
-									"activity": "If Condition1",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"enableStaging": false
-							}
 						}
 					]
 				}
