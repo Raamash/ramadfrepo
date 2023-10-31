@@ -220,7 +220,7 @@
 																"type": "Expression"
 															},
 															"ds_directory": {
-																"value": "@pipeline().parameters.pp_directory_txt",
+																"value": "@pipeline().parameters.pp_directory_in",
 																"type": "Expression"
 															},
 															"ds_file": "@item().name"
@@ -240,7 +240,7 @@
 																"value": "@pipeline().parameters.pp_directory_txt",
 																"type": "Expression"
 															},
-															"ds_file": "item().name"
+															"ds_file": "@item().name"
 														}
 													}
 												]
