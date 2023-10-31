@@ -166,7 +166,7 @@
 										"value": "txt",
 										"activities": [
 											{
-												"name": "Copy data2",
+												"name": "Copy txt",
 												"type": "Copy",
 												"dependsOn": [],
 												"policy": {
