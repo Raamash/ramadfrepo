@@ -81,7 +81,7 @@
 										"value": "csv",
 										"activities": [
 											{
-												"name": "Copy data1",
+												"name": "Copy csv",
 												"type": "Copy",
 												"dependsOn": [],
 												"policy": {
