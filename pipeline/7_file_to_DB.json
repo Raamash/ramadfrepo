@@ -1,0 +1,89 @@
+{
+	"name": "7_file_to_DB",
+	"properties": {
+		"activities": [
+			{
+				"name": "filetodb",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "data_test_para",
+						"type": "DatasetReference",
+						"parameters": {
+							"ds_system": {
+								"value": "@pipeline().parameters.pp_system",
+								"type": "Expression"
+							},
+							"ds_directory": {
+								"value": "@pipeline().parameters.pp_folder",
+								"type": "Expression"
+							},
+							"ds_file": {
+								"value": "@pipeline().parameters.pp_file",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSqlinsert1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"parameters": {
+			"pp_system": {
+				"type": "string",
+				"defaultValue": "project-contianer"
+			},
+			"pp_folder": {
+				"type": "string",
+				"defaultValue": "project/output"
+			},
+			"pp_file": {
+				"type": "string",
+				"defaultValue": "SalesLTselect"
+			}
+		},
+		"annotations": []
+	}
+}
