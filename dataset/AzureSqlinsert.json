@@ -1,9 +1,14 @@
 {
-	"name": "AzureSqlinsert1",
+	"name": "AzureSqlinsert",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzurSQDBBLL",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"ds_table": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
@@ -29,7 +34,10 @@
 		],
 		"typeProperties": {
 			"schema": "SalesLT",
-			"table": "report1"
+			"table": {
+				"value": "@dataset().ds_table",
+				"type": "Expression"
+			}
 		}
 	}
 }
