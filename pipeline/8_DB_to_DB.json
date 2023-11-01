@@ -46,7 +46,13 @@
 				"outputs": [
 					{
 						"referenceName": "AzureSqlinsert",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"ds_table": {
+								"value": "@pipeline().parameters.pp_table",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
