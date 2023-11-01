@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "dbtofile",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -53,8 +53,18 @@
 						"referenceName": "data_test_para",
 						"type": "DatasetReference",
 						"parameters": {
-							"ds_system": "project-contianer",
-							"ds_directory": "project/output"
+							"ds_system": {
+								"value": "@pipeline().parameters.pp_system",
+								"type": "Expression"
+							},
+							"ds_directory": {
+								"value": "@pipeline().parameters.pp_folder",
+								"type": "Expression"
+							},
+							"ds_file": {
+								"value": "@pipeline().parameters.pp_file",
+								"type": "Expression"
+							}
 						}
 					}
 				]
