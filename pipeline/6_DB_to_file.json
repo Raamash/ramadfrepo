@@ -44,7 +44,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AzureDBselect",
+						"referenceName": "AzureDBselect1",
 						"type": "DatasetReference"
 					}
 				],
