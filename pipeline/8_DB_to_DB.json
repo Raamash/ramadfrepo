@@ -62,6 +62,10 @@
 			"pp_file": {
 				"type": "string",
 				"defaultValue": "SalesLTselect"
+			},
+			"pp_table": {
+				"type": "string",
+				"defaultValue": "report2"
 			}
 		},
 		"annotations": []
