@@ -64,8 +64,14 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSqlinsert1",
-						"type": "DatasetReference"
+						"referenceName": "AzureSqlinsert",
+						"type": "DatasetReference",
+						"parameters": {
+							"ds_table": {
+								"value": "@pipeline().parameters.pp_table",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
@@ -82,6 +88,10 @@
 			"pp_file": {
 				"type": "string",
 				"defaultValue": "SalesLTselect"
+			},
+			"pp_table": {
+				"type": "string",
+				"defaultValue": "report1"
 			}
 		},
 		"annotations": []
