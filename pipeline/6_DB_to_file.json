@@ -44,7 +44,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "AzureDBselect",
 						"type": "DatasetReference"
 					}
 				],
