@@ -1,0 +1,79 @@
+{
+	"name": "6_DB_to_file",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select ProductID,Name,Color,Weight\n from [SalesLT].[Product]\n where Color in ('Black','Red')",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "data_test_para",
+						"type": "DatasetReference",
+						"parameters": {
+							"ds_system": "project-contianer",
+							"ds_directory": "project/output"
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"pp_system": {
+				"type": "string",
+				"defaultValue": "project-contianer"
+			},
+			"pp_folder": {
+				"type": "string",
+				"defaultValue": "project/output"
+			},
+			"pp_file": {
+				"type": "string",
+				"defaultValue": "SalesLTselect"
+			}
+		},
+		"annotations": []
+	}
+}
