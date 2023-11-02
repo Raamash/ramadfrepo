@@ -1,5 +1,5 @@
 {
-	"name": "data_test_para",
+	"name": "para_data_txt",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakelinkedservice",

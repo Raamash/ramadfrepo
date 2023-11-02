@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "copy data in to out",
+				"name": "copy txt to csv",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -49,18 +49,60 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText1",
-						"type": "DatasetReference"
+						"referenceName": "para_data_txt",
+						"type": "DatasetReference",
+						"parameters": {
+							"ds_system": {
+								"value": "@pipeline().parameters.pp_system",
+								"type": "Expression"
+							},
+							"ds_directory": {
+								"value": "@pipeline().parameters.pp_folder",
+								"type": "Expression"
+							},
+							"ds_file": {
+								"value": "@pipeline().parameters.pp_file",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DelimitedText2",
-						"type": "DatasetReference"
+						"referenceName": "para_data_csv",
+						"type": "DatasetReference",
+						"parameters": {
+							"ds_system": {
+								"value": "@pipeline().parameters.pp_system",
+								"type": "Expression"
+							},
+							"ds_directory": {
+								"value": "@pipeline().parameters.pp_folder",
+								"type": "Expression"
+							},
+							"ds_file": {
+								"value": "@pipeline().parameters.pp_file",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
 		],
+		"parameters": {
+			"pp_system": {
+				"type": "string"
+			},
+			"pp_folder_in": {
+				"type": "string"
+			},
+			"pp_file": {
+				"type": "string"
+			},
+			"pp_folder_out": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
