@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "csvfortransform",
+						"referenceName": "para_data_csv",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
@@ -30,26 +30,7 @@
 				}
 			],
 			"scriptLines": [
-				"source(output(",
-				"          ProductID as integer,",
-				"          Name as string,",
-				"          ProductNumber as string,",
-				"          Color as string,",
-				"          StandardCost as string,",
-				"          ListPrice as string,",
-				"          Size as string,",
-				"          Weight as string,",
-				"          ProductCategoryID as string,",
-				"          ProductModelID as string,",
-				"          SellStartDate as string,",
-				"          SellEndDate as string,",
-				"          DiscontinuedDate as string,",
-				"          ThumbNailPhoto as string,",
-				"          ThumbnailPhotoFileName as string,",
-				"          rowguid as string,",
-				"          ModifiedDate as string",
-				"     ),",
-				"     allowSchemaDrift: false,",
+				"source(allowSchemaDrift: false,",
 				"     validateSchema: true,",
 				"     ignoreNoFilesFound: false) ~> source1",
 				"source1 select(mapColumn(",
