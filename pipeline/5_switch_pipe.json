@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "data_test_para",
+						"referenceName": "para_data_txt",
 						"type": "DatasetReference",
 						"parameters": {
 							"ds_system": {
@@ -40,6 +40,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -127,7 +128,7 @@
 												},
 												"inputs": [
 													{
-														"referenceName": "data_test_para",
+														"referenceName": "para_data_txt",
 														"type": "DatasetReference",
 														"parameters": {
 															"ds_system": {
@@ -144,7 +145,7 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "data_test_para",
+														"referenceName": "para_data_txt",
 														"type": "DatasetReference",
 														"parameters": {
 															"ds_system": {
@@ -212,7 +213,7 @@
 												},
 												"inputs": [
 													{
-														"referenceName": "data_test_para",
+														"referenceName": "para_data_txt",
 														"type": "DatasetReference",
 														"parameters": {
 															"ds_system": {
@@ -229,7 +230,7 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "data_test_para",
+														"referenceName": "para_data_txt",
 														"type": "DatasetReference",
 														"parameters": {
 															"ds_system": {
@@ -296,7 +297,7 @@
 										},
 										"inputs": [
 											{
-												"referenceName": "data_test_para",
+												"referenceName": "para_data_txt",
 												"type": "DatasetReference",
 												"parameters": {
 													"ds_system": {
@@ -313,7 +314,7 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "data_test_para",
+												"referenceName": "para_data_txt",
 												"type": "DatasetReference",
 												"parameters": {
 													"ds_system": {

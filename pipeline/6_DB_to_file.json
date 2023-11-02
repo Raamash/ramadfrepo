@@ -50,7 +50,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "data_test_para",
+						"referenceName": "para_data_txt",
 						"type": "DatasetReference",
 						"parameters": {
 							"ds_system": {
