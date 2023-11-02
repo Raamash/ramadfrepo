@@ -140,6 +140,24 @@
 									"type": "Expression"
 								}
 							}
+						},
+						"linkedServiceParameters": {
+							"source1": {
+								"schemaLinkedService": {
+									"ds_system": {
+										"value": "@pipeline().parameters.pp_system",
+										"type": "Expression"
+									},
+									"ds_directory": {
+										"value": "@pipeline().parameters.pp_folder_out",
+										"type": "Expression"
+									},
+									"ds_file": {
+										"value": "@pipeline().parameters.pp_file",
+										"type": "Expression"
+									}
+								}
+							}
 						}
 					},
 					"compute": {
