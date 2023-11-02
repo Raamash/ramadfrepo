@@ -46,7 +46,6 @@
 				"          Name,",
 				"          ProductNumber,",
 				"          Color,",
-				"          Size,",
 				"          Weight",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
