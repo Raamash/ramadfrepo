@@ -116,6 +116,14 @@
 								"ds_system": {
 									"value": "@pipeline().parameters.pp_system",
 									"type": "Expression"
+								},
+								"ds_directory": {
+									"value": "@pipeline().parameters.pp_folder_out",
+									"type": "Expression"
+								},
+								"ds_file": {
+									"value": "@activity('copy txt to csv').output",
+									"type": "Expression"
 								}
 							},
 							"sink1": {
