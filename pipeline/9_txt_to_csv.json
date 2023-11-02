@@ -110,7 +110,23 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "dataflow1",
-						"type": "DataFlowReference"
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"sink1": {
+								"ds_system": {
+									"value": "@pipeline().parameters.pp_system",
+									"type": "Expression"
+								},
+								"ds_directory": {
+									"value": "@pipeline().parameters.pp_folder_out",
+									"type": "Expression"
+								},
+								"ds_file": {
+									"value": "@pipeline().parameters.pp_file",
+									"type": "Expression"
+								}
+							}
+						}
 					},
 					"compute": {
 						"coreCount": 8,
