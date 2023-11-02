@@ -1,0 +1,32 @@
+{
+	"name": "para_data_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakelinkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"ds_system": {
+				"type": "string"
+			},
+			"ds_directory": {
+				"type": "string"
+			},
+			"ds_file": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
