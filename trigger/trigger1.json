@@ -1,0 +1,29 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "8_DB_to_DB",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"pp_system": "project-contianer",
+					"pp_folder": "project/output",
+					"pp_table": "report1"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2023-11-03T22:19:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
