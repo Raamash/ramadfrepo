@@ -1,5 +1,5 @@
 {
-	"name": "firsttrigger",
+	"name": "T3",
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
@@ -16,7 +16,7 @@
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2023-11-03T10:50:00",
+				"startTime": "2023-11-03T11:30:00",
 				"timeZone": "Romance Standard Time"
 			}
 		}
