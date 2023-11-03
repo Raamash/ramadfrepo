@@ -98,5 +98,6 @@
 			"schema": "SalesLT",
 			"table": "report1"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

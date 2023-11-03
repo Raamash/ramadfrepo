@@ -75,6 +75,8 @@
 				"defaultValue": "report2"
 			}
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2023-11-03T10:07:56Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

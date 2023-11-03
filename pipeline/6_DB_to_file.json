@@ -84,6 +84,8 @@
 				"defaultValue": "SalesLTselect"
 			}
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2023-11-03T10:07:57Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }
