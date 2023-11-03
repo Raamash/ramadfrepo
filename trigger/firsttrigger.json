@@ -2,15 +2,22 @@
 	"name": "firsttrigger",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
-		"pipelines": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "1_firstpipeline",
+					"type": "PipelineReference"
+				}
+			}
+		],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2023-11-03T22:16:00",
-				"timeZone": "India Standard Time"
+				"startTime": "2023-11-03T10:35:00",
+				"timeZone": "Romance Standard Time"
 			}
 		}
 	}
