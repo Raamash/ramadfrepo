@@ -1,8 +1,8 @@
 {
-	"name": "trigger2",
+	"name": "T2",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
@@ -14,10 +14,10 @@
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
-				"frequency": "Minute",
-				"interval": 15,
-				"startTime": "2023-11-02T22:38:00",
-				"timeZone": "India Standard Time"
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-11-02T11:20:00",
+				"timeZone": "Romance Standard Time"
 			}
 		}
 	}
