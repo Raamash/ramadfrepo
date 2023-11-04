@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakelinkedservice'"
 		},
+		"AzureDatabricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks'"
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
@@ -28,6 +32,42 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/10_ADB_pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Notebook1",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/raamashaamy@gmail.com/1_ADB_first_notebook"
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks')]"
+			]
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/1_firstpipeline')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -205,7 +245,8 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2023-11-03T10:07:57Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]",
@@ -468,7 +509,7 @@
 					}
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-10-31T16:08:46Z"
+				"lastPublishTime": "2023-11-03T10:07:57Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/para_dataset')]"
@@ -653,7 +694,7 @@
 					}
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-10-31T16:08:46Z"
+				"lastPublishTime": "2023-11-03T10:07:57Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/para_dataset')]"
@@ -934,7 +975,8 @@
 						"type": "string"
 					}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2023-11-03T10:07:57Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/para_data_txt')]"
@@ -1304,7 +1346,8 @@
 						"type": "string"
 					}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2023-11-03T10:07:57Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/para_data_txt')]"
@@ -1402,7 +1445,8 @@
 						"defaultValue": "SalesLTselect"
 					}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2023-11-03T10:07:57Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AzureDBselect1')]",
@@ -1510,7 +1554,8 @@
 						"defaultValue": "report1"
 					}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2023-11-03T10:07:57Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/para_data_txt')]",
@@ -1600,7 +1645,8 @@
 						"defaultValue": "report2"
 					}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2023-11-03T10:07:56Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AzureDBselect2')]",
@@ -1770,7 +1816,8 @@
 						"type": "string"
 					}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2023-11-03T10:07:57Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/para_data_txt')]",
@@ -2440,6 +2487,28 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-1984778778549982.2.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricks_accessToken')]"
+					},
+					"newClusterNodeType": "Standard_DS3_v2",
+					"newClusterNumOfWorker": "1",
+					"newClusterVersion": "13.3.x-scala2.12",
+					"clusterOption": "Fixed",
+					"newClusterInitScripts": []
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -2451,36 +2520,6 @@
 				}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/T1')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "1_firstpipeline",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2023-11-03T11:25:00",
-						"timeZone": "Romance Standard Time"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/1_firstpipeline')]"
-			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/dataflow1')]",

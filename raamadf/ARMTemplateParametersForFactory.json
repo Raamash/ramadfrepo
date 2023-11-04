@@ -11,6 +11,9 @@
 		"AzureDataLakelinkedservice_accountKey": {
 			"value": ""
 		},
+		"AzureDatabricks_accessToken": {
+			"value": ""
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},

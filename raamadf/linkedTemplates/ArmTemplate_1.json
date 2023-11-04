@@ -13,6 +13,472 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/5_switch_pipe')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Get Metadata1",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "para_data_txt",
+								"type": "DatasetReference",
+								"parameters": {
+									"ds_system": {
+										"value": "@pipeline().parameters.pp_system",
+										"type": "Expression"
+									},
+									"ds_directory": {
+										"value": "@pipeline().parameters.pp_directory_in",
+										"type": "Expression"
+									},
+									"ds_file": {
+										"value": "@pipeline().parameters.pp_file",
+										"type": "Expression"
+									}
+								}
+							},
+							"fieldList": [
+								"childItems",
+								"itemName",
+								"lastModified"
+							],
+							"storeSettings": {
+								"type": "AzureBlobFSReadSettings",
+								"recursive": true,
+								"enablePartitionDiscovery": false
+							},
+							"formatSettings": {
+								"type": "DelimitedTextReadSettings"
+							}
+						}
+					},
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Get Metadata1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get Metadata1').output.childItems",
+								"type": "Expression"
+							},
+							"isSequential": true,
+							"activities": [
+								{
+									"name": "Switch1",
+									"type": "Switch",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"on": {
+											"value": "@split(item().name,'.')[1]",
+											"type": "Expression"
+										},
+										"cases": [
+											{
+												"value": "csv",
+												"activities": [
+													{
+														"name": "Copy csv",
+														"type": "Copy",
+														"dependsOn": [],
+														"policy": {
+															"timeout": "0.12:00:00",
+															"retry": 0,
+															"retryIntervalInSeconds": 30,
+															"secureOutput": false,
+															"secureInput": false
+														},
+														"userProperties": [],
+														"typeProperties": {
+															"source": {
+																"type": "DelimitedTextSource",
+																"storeSettings": {
+																	"type": "AzureBlobFSReadSettings",
+																	"recursive": true,
+																	"enablePartitionDiscovery": false
+																},
+																"formatSettings": {
+																	"type": "DelimitedTextReadSettings"
+																}
+															},
+															"sink": {
+																"type": "DelimitedTextSink",
+																"storeSettings": {
+																	"type": "AzureBlobFSWriteSettings"
+																},
+																"formatSettings": {
+																	"type": "DelimitedTextWriteSettings",
+																	"quoteAllText": true,
+																	"fileExtension": ".txt"
+																}
+															},
+															"enableStaging": false,
+															"translator": {
+																"type": "TabularTranslator",
+																"typeConversion": true,
+																"typeConversionSettings": {
+																	"allowDataTruncation": true,
+																	"treatBooleanAsNumber": false
+																}
+															}
+														},
+														"inputs": [
+															{
+																"referenceName": "para_data_txt",
+																"type": "DatasetReference",
+																"parameters": {
+																	"ds_system": {
+																		"value": "@pipeline().parameters.pp_system",
+																		"type": "Expression"
+																	},
+																	"ds_directory": {
+																		"value": "@pipeline().parameters.pp_directory_in",
+																		"type": "Expression"
+																	},
+																	"ds_file": "@item().name"
+																}
+															}
+														],
+														"outputs": [
+															{
+																"referenceName": "para_data_txt",
+																"type": "DatasetReference",
+																"parameters": {
+																	"ds_system": {
+																		"value": "@pipeline().parameters.pp_system",
+																		"type": "Expression"
+																	},
+																	"ds_directory": {
+																		"value": "@pipeline().parameters.pp_directory_csv",
+																		"type": "Expression"
+																	},
+																	"ds_file": "@item().name"
+																}
+															}
+														]
+													}
+												]
+											},
+											{
+												"value": "txt",
+												"activities": [
+													{
+														"name": "Copy txt",
+														"type": "Copy",
+														"dependsOn": [],
+														"policy": {
+															"timeout": "0.12:00:00",
+															"retry": 0,
+															"retryIntervalInSeconds": 30,
+															"secureOutput": false,
+															"secureInput": false
+														},
+														"userProperties": [],
+														"typeProperties": {
+															"source": {
+																"type": "DelimitedTextSource",
+																"storeSettings": {
+																	"type": "AzureBlobFSReadSettings",
+																	"recursive": true,
+																	"enablePartitionDiscovery": false
+																},
+																"formatSettings": {
+																	"type": "DelimitedTextReadSettings"
+																}
+															},
+															"sink": {
+																"type": "DelimitedTextSink",
+																"storeSettings": {
+																	"type": "AzureBlobFSWriteSettings"
+																},
+																"formatSettings": {
+																	"type": "DelimitedTextWriteSettings",
+																	"quoteAllText": true,
+																	"fileExtension": ".txt"
+																}
+															},
+															"enableStaging": false,
+															"translator": {
+																"type": "TabularTranslator",
+																"typeConversion": true,
+																"typeConversionSettings": {
+																	"allowDataTruncation": true,
+																	"treatBooleanAsNumber": false
+																}
+															}
+														},
+														"inputs": [
+															{
+																"referenceName": "para_data_txt",
+																"type": "DatasetReference",
+																"parameters": {
+																	"ds_system": {
+																		"value": "@pipeline().parameters.pp_system",
+																		"type": "Expression"
+																	},
+																	"ds_directory": {
+																		"value": "@pipeline().parameters.pp_directory_in",
+																		"type": "Expression"
+																	},
+																	"ds_file": "@item().name"
+																}
+															}
+														],
+														"outputs": [
+															{
+																"referenceName": "para_data_txt",
+																"type": "DatasetReference",
+																"parameters": {
+																	"ds_system": {
+																		"value": "@pipeline().parameters.pp_system",
+																		"type": "Expression"
+																	},
+																	"ds_directory": {
+																		"value": "@pipeline().parameters.pp_directory_txt",
+																		"type": "Expression"
+																	},
+																	"ds_file": "@item().name"
+																}
+															}
+														]
+													}
+												]
+											}
+										],
+										"defaultActivities": [
+											{
+												"name": "Copy other",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "DelimitedTextSource",
+														"storeSettings": {
+															"type": "AzureBlobFSReadSettings",
+															"recursive": true,
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "DelimitedTextReadSettings"
+														}
+													},
+													"sink": {
+														"type": "DelimitedTextSink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings"
+														},
+														"formatSettings": {
+															"type": "DelimitedTextWriteSettings",
+															"quoteAllText": true,
+															"fileExtension": ".txt"
+														}
+													},
+													"enableStaging": false,
+													"translator": {
+														"type": "TabularTranslator",
+														"typeConversion": true,
+														"typeConversionSettings": {
+															"allowDataTruncation": true,
+															"treatBooleanAsNumber": false
+														}
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "para_data_txt",
+														"type": "DatasetReference",
+														"parameters": {
+															"ds_system": {
+																"value": "@pipeline().parameters.pp_system",
+																"type": "Expression"
+															},
+															"ds_directory": {
+																"value": "@pipeline().parameters.pp_directory_in",
+																"type": "Expression"
+															},
+															"ds_file": "@item().name"
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "para_data_txt",
+														"type": "DatasetReference",
+														"parameters": {
+															"ds_system": {
+																"value": "@pipeline().parameters.pp_system",
+																"type": "Expression"
+															},
+															"ds_directory": {
+																"value": "@pipeline().parameters.pp_directory_other",
+																"type": "Expression"
+															},
+															"ds_file": "@item().name"
+														}
+													}
+												]
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"pp_system": {
+						"type": "string"
+					},
+					"pp_directory_in": {
+						"type": "string"
+					},
+					"pp_file": {
+						"type": "string"
+					},
+					"pp_directory_csv": {
+						"type": "string"
+					},
+					"pp_directory_txt": {
+						"type": "string"
+					},
+					"pp_directory_other": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-11-03T10:07:57Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/6_DB_to_file')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "dbtofile",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "select ProductID,Name,Color,Weight\n from [SalesLT].[Product]\n where Color in ('Black','Red')",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "AzureDBselect1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "para_data_txt",
+								"type": "DatasetReference",
+								"parameters": {
+									"ds_system": {
+										"value": "@pipeline().parameters.pp_system",
+										"type": "Expression"
+									},
+									"ds_directory": {
+										"value": "@pipeline().parameters.pp_folder",
+										"type": "Expression"
+									},
+									"ds_file": {
+										"value": "@pipeline().parameters.pp_file",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"pp_system": {
+						"type": "string",
+						"defaultValue": "project-contianer"
+					},
+					"pp_folder": {
+						"type": "string",
+						"defaultValue": "project/output"
+					},
+					"pp_file": {
+						"type": "string",
+						"defaultValue": "SalesLTselect"
+					}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-11-03T10:07:57Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/7_file_to_DB')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -113,7 +579,8 @@
 						"defaultValue": "report1"
 					}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2023-11-03T10:07:57Z"
 			},
 			"dependsOn": []
 		},
@@ -200,7 +667,8 @@
 						"defaultValue": "report2"
 					}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2023-11-03T10:07:56Z"
 			},
 			"dependsOn": []
 		},
@@ -445,39 +913,12 @@
 						"type": "string"
 					}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2023-11-03T10:07:57Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/T1')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "1_firstpipeline",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2023-11-03T11:25:00",
-						"timeZone": "Romance Standard Time"
-					}
-				}
-			},
-			"dependsOn": []
 		}
 	]
 }
