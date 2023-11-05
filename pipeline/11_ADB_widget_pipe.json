@@ -1,0 +1,42 @@
+{
+	"name": "11_ADB_widget_pipe",
+	"properties": {
+		"activities": [
+			{
+				"name": "ADFExecute",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/raamashaamy@gmail.com/5_ADB widgets",
+					"baseParameters": {
+						"dd_file": {
+							"value": "@pipeline().parameters.pp_file",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ADBCluster",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"pp_file": {
+				"type": "string",
+				"defaultValue": "https://saramadlsgen2.blob.core.windows.net/project-contianer/project/input/SalesLTProduct.txt"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-11-05T06:40:26Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
