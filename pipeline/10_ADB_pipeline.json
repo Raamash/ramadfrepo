@@ -18,7 +18,7 @@
 					"notebookPath": "/Users/raamashaamy@gmail.com/1_first notebook"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureDatabricks2",
+					"referenceName": "ADBCluster",
 					"type": "LinkedServiceReference"
 				}
 			}
