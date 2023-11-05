@@ -51,7 +51,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/raamashaamy@gmail.com/first notebook"
+							"notebookPath": "/Users/raamashaamy@gmail.com/1_first notebook"
 						},
 						"linkedServiceName": {
 							"referenceName": "AzureDatabricks1",
@@ -63,7 +63,7 @@
 					"elapsedTimeMetric": {}
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-11-04T23:16:40Z"
+				"lastPublishTime": "2023-11-05T06:40:26Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks1')]"
