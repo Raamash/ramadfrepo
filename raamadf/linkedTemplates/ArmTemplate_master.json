@@ -15,9 +15,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakelinkedservice'"
 		},
-		"AzureDatabricks_accessToken": {
+		"AzureDatabricks1_accessToken": {
 			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks'"
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
 		},
 		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
@@ -60,8 +60,8 @@
 					"AzureDataLakelinkedservice_accountKey": {
 						"value": "[parameters('AzureDataLakelinkedservice_accountKey')]"
 					},
-					"AzureDatabricks_accessToken": {
-						"value": "[parameters('AzureDatabricks_accessToken')]"
+					"AzureDatabricks1_accessToken": {
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
 					},
 					"AzureSqlDatabase1_connectionString": {
 						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
