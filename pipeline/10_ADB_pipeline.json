@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Notebook1",
+				"name": "ADFExecute",
 				"type": "DatabricksNotebook",
 				"dependsOn": [],
 				"policy": {
@@ -15,10 +15,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/raamashaamy@gmail.com/1_ADB_first_notebook"
+					"notebookPath": "/Users/raamashaamy@gmail.com/first notebook"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureDatabricks",
+					"referenceName": "AzureDatabricks1",
 					"type": "LinkedServiceReference"
 				}
 			}
