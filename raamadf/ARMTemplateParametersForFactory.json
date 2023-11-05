@@ -5,17 +5,20 @@
 		"factoryName": {
 			"value": "raamadf"
 		},
+		"ADBCluster_accessToken": {
+			"value": ""
+		},
 		"AzurSQDBBLL_connectionString": {
 			"value": ""
 		},
 		"AzureDataLakelinkedservice_accountKey": {
 			"value": ""
 		},
-		"AzureDatabricks1_accessToken": {
-			"value": ""
-		},
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
+		},
+		"ADBCluster_properties_typeProperties_existingClusterId": {
+			"value": "1105-165706-2rvwayy1"
 		},
 		"AzureDataLakelinkedservice_properties_typeProperties_url": {
 			"value": "https://saramadlsgen2.dfs.core.windows.net/"

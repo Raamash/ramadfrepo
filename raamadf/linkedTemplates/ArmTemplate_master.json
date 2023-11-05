@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "raamadf"
 		},
+		"ADBCluster_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ADBCluster'"
+		},
 		"AzurSQDBBLL_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzurSQDBBLL'"
@@ -15,13 +19,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakelinkedservice'"
 		},
-		"AzureDatabricks1_accessToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
-		},
 		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"ADBCluster_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1105-165706-2rvwayy1"
 		},
 		"AzureDataLakelinkedservice_properties_typeProperties_url": {
 			"type": "string",
@@ -54,17 +58,20 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"ADBCluster_accessToken": {
+						"value": "[parameters('ADBCluster_accessToken')]"
+					},
 					"AzurSQDBBLL_connectionString": {
 						"value": "[parameters('AzurSQDBBLL_connectionString')]"
 					},
 					"AzureDataLakelinkedservice_accountKey": {
 						"value": "[parameters('AzureDataLakelinkedservice_accountKey')]"
 					},
-					"AzureDatabricks1_accessToken": {
-						"value": "[parameters('AzureDatabricks1_accessToken')]"
-					},
 					"AzureSqlDatabase1_connectionString": {
 						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"ADBCluster_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('ADBCluster_properties_typeProperties_existingClusterId')]"
 					},
 					"AzureDataLakelinkedservice_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakelinkedservice_properties_typeProperties_url')]"
