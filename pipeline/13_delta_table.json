@@ -27,7 +27,10 @@
 								"value": "@pipeline().parameters.pp_directory",
 								"type": "Expression"
 							},
-							"ds_file": "@item().name"
+							"ds_file": {
+								"value": "@pipeline().parameters.pp_file",
+								"type": "Expression"
+							}
 						}
 					},
 					"fieldList": [
@@ -88,10 +91,12 @@
 		],
 		"parameters": {
 			"pp_system": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "project-contianer"
 			},
 			"pp_directory": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "project/input"
 			},
 			"pp_file": {
 				"type": "string"
