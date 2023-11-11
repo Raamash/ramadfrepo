@@ -79,7 +79,13 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"notebookPath": "/Users/raamashaamy@gmail.com/9_ADF_delta"
+								"notebookPath": "/Users/raamashaamy@gmail.com/9_ADF_delta",
+								"baseParameters": {
+									"input": {
+										"value": "@item()",
+										"type": "Expression"
+									}
+								}
 							},
 							"linkedServiceName": {
 								"referenceName": "AzureDatabricks2",
