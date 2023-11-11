@@ -82,7 +82,7 @@
 								"notebookPath": "/Users/raamashaamy@gmail.com/9_ADF_delta",
 								"baseParameters": {
 									"input": {
-										"value": "@item()",
+										"value": "@item().name",
 										"type": "Expression"
 									}
 								}
