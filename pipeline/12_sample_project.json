@@ -33,7 +33,10 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"fieldList": []
+				}
 			},
 			{
 				"name": "Azure Function1",
@@ -76,7 +79,10 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": ""
+				}
 			},
 			{
 				"name": "Filter1",
@@ -149,6 +155,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "Project"
+		},
 		"annotations": []
 	}
 }
