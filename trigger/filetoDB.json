@@ -1,0 +1,28 @@
+{
+	"name": "filetoDB",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "13_delta_table",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"pp_system": "project-contianer",
+					"pp_directory": "project/input"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-11-14T21:10:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
